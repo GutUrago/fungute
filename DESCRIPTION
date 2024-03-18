@@ -1,0 +1,14 @@
+Package: fungute
+Title: Supplement Functions for Big Survey Wrangling
+Version: 0.0.0.9000
+Authors@R: 
+    person("Gutama Girja", "Urago", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package helps to read survey files and complement them with excel.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    data.table,
+    readxl
