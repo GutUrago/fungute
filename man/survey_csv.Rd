@@ -2,12 +2,12 @@
 % Please edit documentation in R/survey_csv.R
 \name{survey_csv}
 \alias{survey_csv}
-\title{Reads csv data file}
+\title{Reads csv survey file}
 \usage{
 survey_csv(data, label = NULL, sht = NULL, fct = TRUE)
 }
 \arguments{
-\item{data}{is a csv data frame to be read}
+\item{data}{is a path to the csv data frame to be read}
 
 \item{label}{an excel file containing names and labels of variables}
 
@@ -16,10 +16,11 @@ survey_csv(data, label = NULL, sht = NULL, fct = TRUE)
 \item{fct}{if you wish to convert strings in to factors}
 }
 \value{
-cleaned data
+a data table
 }
 \description{
-Reads csv data file
+This function helps to organize big survey such as ESS to
+organize cleaning and wrangling process.
 }
 \examples{
 # survey_csv("test.csv")
