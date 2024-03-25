@@ -1,4 +1,4 @@
-Package: fungute
+Package: wbMicro
 Title: Supplement Functions for Big Survey Wrangling
 Version: 0.0.0.9000
 Authors@R: 
@@ -16,5 +16,5 @@ Imports:
     readxl,
     rvest,
     stringr
-URL: https://github.com/GutUrago/fungute
-BugReports: https://github.com/GutUrago/fungute/issues
+URL: https://github.com/GutUrago/wbMicro
+BugReports: https://github.com/GutUrago/wbMicro/issues

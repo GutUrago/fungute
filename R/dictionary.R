@@ -19,7 +19,7 @@
 #' # library(fastverse)
 #' # library(tidyverse)
 #' # library(openxlsx)
-#' # test <- scrap(code = 6161, name = "F4?file_name=sect3_hh_w5.dta", FALSE)
+#' # test <- dictionary(code = 6161, name = "F4?file_name=sect3_hh_w5.dta", FALSE)
 
 #' # wb <- loadWorkbook("test.xlsx")
 #' # addWorksheet(wb, "here")
@@ -31,7 +31,7 @@
 
 
 
-dt_dict <- function(code, name, namecol = TRUE) {
+dictionary <- function(code, name, namecol = TRUE) {
         link = paste0("https://microdata.worldbank.org/index.php/catalog/",
                       code, "/data-dictionary/", name)
         web <- rvest::read_html(x = link)
@@ -44,25 +44,25 @@ dt_dict <- function(code, name, namecol = TRUE) {
         web <- stringr::str_split(string = web, pattern = "  ")[[1]]
         dt <- data.table::as.data.table(x = web)
         dt <- collapse::fmutate(.data = dt,
-                                r = 1:collapse::fnobs(web),
-                                r = data.table::fifelse(r %% 2 != 1,
+                                "r" = 1:collapse::fnobs(web))
+        dt <- collapse::fmutate(.data = dt,
+                                "r" = data.table::fifelse(dt$r %% 2 != 1,
                                                         "even", "odd"))
         df <- if(namecol){
                 data.table::data.table(
-                        var = dt[r=="odd", web],
+                        var = dt$web[dt$r=="odd"],
                         name = "",
-                        desc = dt[r=="even", web])
+                        desc = dt$web[dt$r=="even"])
         } else {
                 data.table::data.table(
-                        var = dt[r=="odd", web],
-                        desc = dt[r=="even", web])
+                        var = dt$web[dt$r=="odd"],
+                        desc = dt$web[dt$r=="even"])
         }
         return(df)
 }
 
 
-
-
+# dictionary(code = 5827, name = "F2?file_name=Ethiopia_COVID19_Vax_Survey.dta")
 
 
 

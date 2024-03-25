@@ -16,13 +16,13 @@
 #' @export
 #'
 #' @examples
-#' # survey_csv("test.csv")
+#' # micro_csv("test.csv")
 #'
 
 
 
 
-survey_csv <- function(data,
+micro_csv <- function(data,
                        label = NULL,
                        sht = NULL,
                        fct = TRUE){
