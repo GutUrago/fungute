@@ -30,6 +30,4 @@ add_sheet <- function(workbook, data, sheet){
         openxlsx::writeDataTable(wb = mwb, sheet = sheet, x = data,
                                  colNames = TRUE,
                                  tableStyle = "TableStyleMedium2")
-        openxlsx::saveWorkbook(wb = mwb, file = workbook,
-                               overwrite = TRUE, returnValue = TRUE)
         }
