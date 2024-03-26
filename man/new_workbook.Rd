@@ -9,8 +9,7 @@ new_workbook(filename, sheet = NULL, overwrite = TRUE)
 \arguments{
 \item{filename}{Workbook filename without extension (.xlsx)}
 
-\item{sheet}{Name of sheet to be created,
-if null \verb{Sheet 1} will be assigned}
+\item{sheet}{Name of sheet to be created}
 
 \item{overwrite}{If \code{TRUE} overwrites an existing file. \code{default=TRUE}}
 }

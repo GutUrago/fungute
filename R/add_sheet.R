@@ -3,7 +3,7 @@
 #' Add new sheet to an existing workbook
 #'
 #' @description
-#' Loads an existing workbook and adds the new sheet
+#' Adds new sheet to loaded workbook and saves
 #'
 #'
 #' @param data table that is going to be written in the workbook
@@ -24,10 +24,8 @@
 
 
 
-add_sheet <- function(data, workbook, sheet){
-        if(exists(workbook)) {
-                mwb <- workbook
-        } else {mwb <- openxlsx::loadWorkbook(file = workbook)}
+add_sheet <- function(workbook, data, sheet){
+        mwb <- workbook
         openxlsx::addWorksheet(wb = mwb, sheetName = sheet)
         openxlsx::writeDataTable(wb = mwb, sheet = sheet, x = data,
                                  colNames = TRUE,

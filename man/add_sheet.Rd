@@ -4,12 +4,12 @@
 \alias{add_sheet}
 \title{Add new sheet to an existing workbook}
 \usage{
-add_sheet(data, workbook, sheet)
+add_sheet(workbook, data, sheet)
 }
 \arguments{
-\item{data}{table that is going to be written in the workbook}
-
 \item{workbook}{existing workbook}
+
+\item{data}{table that is going to be written in the workbook}
 
 \item{sheet}{name of the new sheet}
 }
@@ -17,7 +17,7 @@ add_sheet(data, workbook, sheet)
 Overwrites workbook
 }
 \description{
-Loads an existing workbook and adds the new sheet
+Adds new sheet to loaded workbook and saves
 }
 \details{
 If you wish to create and load new workbook at the same time
