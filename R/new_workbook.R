@@ -2,21 +2,22 @@
 
 
 
-#' Create and load new workbook
+#' Create and load new excel workbook
 #'
 #' @description
-#' Creates and loads new workbook with custom sheet name
+#' Creates and loads new excel workbook with custom sheet name
 #'
 #'
-#' @param filename Workbook filename without .xlsx
-#' @param sheet Name of sheet, if null `Sheet 1` will be created
-#' @param overwrite Overwrites an existing file
+#' @param filename Workbook filename without extension (.xlsx)
+#' @param sheet Name of sheet to be created,
+#' if null `Sheet 1` will be assigned
+#' @param overwrite If `TRUE` overwrites an existing file. `default=TRUE`
 #'
 #' @return Creates and loads workbook
-#' @export
+#' @author Gutama Girja Urago
 #'
 #' @examples
-#' # new_workbook("test")
+#' # wb <- new_workbook("test")
 
 
 

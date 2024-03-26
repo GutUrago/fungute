@@ -2,6 +2,7 @@
 
 
 #' Reads csv survey file
+#'
 #' @description
 #' Imports csv micro-data file from local directory. I should be
 #' supplemented with the excel workbook that follows
@@ -20,17 +21,17 @@
 #' set these names.
 #'
 #' @return a data table
-#' @export
+#' @author Gutama Girja Urago
 #'
 #' @examples
-#' # micro_csv("test.csv")
+#' # import_csv("test.csv")
 #'
 
 
 
 
-micro_csv <- function(data,
-                      label,
+import_csv <- function(data,
+                      label = NULL,
                       sht = NULL,
                       fct = TRUE){
         if(fct){
@@ -43,6 +44,8 @@ micro_csv <- function(data,
                 label <- readxl::read_excel(path = label, sheet = sht)
         } else if(!is.null(label)){
                 label <- readxl::read_excel(path = label)
+        } else {
+                return(dt)
         }
         label <- collapse::na_omit(label)
         dt <- collapse::fselect(.x = dt, label$var)

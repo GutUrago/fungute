@@ -2,23 +2,27 @@
 % Please edit documentation in R/new_workbook.R
 \name{new_workbook}
 \alias{new_workbook}
-\title{Create and load new workbook}
+\title{Create and load new excel workbook}
 \usage{
 new_workbook(filename, sheet = NULL, overwrite = TRUE)
 }
 \arguments{
-\item{filename}{Workbook filename without .xlsx}
+\item{filename}{Workbook filename without extension (.xlsx)}
 
-\item{sheet}{Name of sheet, if null \verb{Sheet 1} will be created}
+\item{sheet}{Name of sheet to be created,
+if null \verb{Sheet 1} will be assigned}
 
-\item{overwrite}{Overwrites an existing file}
+\item{overwrite}{If \code{TRUE} overwrites an existing file. \code{default=TRUE}}
 }
 \value{
 Creates and loads workbook
 }
 \description{
-Creates and loads new workbook with custom sheet name
+Creates and loads new excel workbook with custom sheet name
 }
 \examples{
-# new_workbook("test")
+# wb <- new_workbook("test")
+}
+\author{
+Gutama Girja Urago
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dictionary.R
 \name{dictionary}
 \alias{dictionary}
-\title{Scrap web data dictionary}
+\title{Extracts web data dictionary}
 \usage{
 dictionary(catalog, filename, org = "wb", namecol = TRUE)
 }
@@ -11,21 +11,26 @@ dictionary(catalog, filename, org = "wb", namecol = TRUE)
 
 \item{filename}{string in the web link after data-dictionary without "/"}
 
-\item{org}{name of an organization "wb" or "fao"}
+\item{org}{name of an organization "wb" or "fao", \code{default = "wb"}}
 
-\item{namecol}{if empty column for new name is inserted or not.
+\item{namecol}{if empty column for new name is mutated or not.
 \code{default = TRUE}, then manually set new names in excel sheet}
 }
 \value{
-a data frame
+a data table
 }
 \description{
-Extracts data dictionary from WB LSMS given catalog code and file name.
-
+Extracts data dictionary from World bank or FAO data catalogs given
+catalog number and file name.
+}
+\details{
 If there is any missing description of variables, it automatically
 set "Unknown" to the description to write balanced data table
 }
 \examples{
-dictionary(catalog = 5984, filename = "F5")
-dictionary(catalog = 1771, filename = "F392", org = "fao")
+# dictionary(catalog = 5984, filename = "F5")
+# dictionary(catalog = 1771, filename = "F392", org = "fao")
+}
+\author{
+Gutama Girja Urago
 }

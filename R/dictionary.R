@@ -1,28 +1,32 @@
 
 
-#' Scrap web data dictionary
+#' Extracts web data dictionary
+#'
 #' @description
-#' Extracts data dictionary from WB LSMS given catalog code and file name.
+#' Extracts data dictionary from World bank or FAO data catalogs given
+#' catalog number and file name.
 #'
 #'
 #' @param catalog integer in the web link after catalog without "/"
 #' @param filename string in the web link after data-dictionary without "/"
-#' @param org name of an organization "wb" or "fao"
-#' @param namecol if empty column for new name is inserted or not.
+#' @param org name of an organization "wb" or "fao", `default = "wb"`
+#' @param namecol if empty column for new name is mutated or not.
 #' `default = TRUE`, then manually set new names in excel sheet
-#' @description
+#'
+#' @details
 #' If there is any missing description of variables, it automatically
 #' set "Unknown" to the description to write balanced data table
 #'
-#' @return a data frame
-#' @export
+#' @return a data table
+#' @author Gutama Girja Urago
 #'
 #' @examples
-#' dictionary(catalog = 5984, filename = "F5")
-#' dictionary(catalog = 1771, filename = "F392", org = "fao")
+#' # dictionary(catalog = 5984, filename = "F5")
+#' # dictionary(catalog = 1771, filename = "F392", org = "fao")
 
 
-dictionary <- function(catalog, filename,
+dictionary <- function(catalog,
+                       filename,
                        org = "wb",
                        namecol = TRUE) {
         if(org == "wb") {

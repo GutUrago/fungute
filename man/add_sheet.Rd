@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_sheet.R
 \name{add_sheet}
 \alias{add_sheet}
-\title{Add new sheet to an existing work book}
+\title{Add new sheet to an existing workbook}
 \usage{
 add_sheet(data, workbook, sheet)
 }
@@ -17,8 +17,15 @@ add_sheet(data, workbook, sheet)
 Overwrites workbook
 }
 \description{
-Reads existing workbook and adds the new sheet
+Loads an existing workbook and adds the new sheet
+}
+\details{
+If you wish to create and load new workbook at the same time
+use \code{microData::new_workbook()}.
 }
 \examples{
 # add_sheet(wb, "file.xlsx", "sheet")
+}
+\author{
+Gutama Girja Urago
 }
