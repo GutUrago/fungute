@@ -7,8 +7,8 @@
 #'
 #'
 #' @param data table that is going to be written in the workbook
-#' @param wb existing workbook
-#' @param sht name of the new sheet
+#' @param workbook existing workbook
+#' @param sheet name of the new sheet
 #'
 #' @return Overwrites workbook
 #' @export
@@ -18,11 +18,12 @@
 
 
 
-add_sheet <- function(data, wb, sht){
-        mwb <- openxlsx::loadWorkbook(file = wb)
-        openxlsx::addWorksheet(wb = mwb, sheetName = sht)
-        openxlsx::writeDataTable(wb = mwb, sheet = sht, x = data,
+add_sheet <- function(data, workbook, sheet){
+        mwb <- openxlsx::loadWorkbook(file = workbook)
+        openxlsx::addWorksheet(wb = mwb, sheetName = sheet)
+        openxlsx::writeDataTable(wb = mwb, sheet = sheet, x = data,
+                                 colNames = TRUE,
                                  tableStyle = "TableStyleMedium2")
-        openxlsx::saveWorkbook(wb = mwb, file = wb,
+        openxlsx::saveWorkbook(wb = mwb, file = workbook,
                                overwrite = TRUE, returnValue = TRUE)
-}
+        }

@@ -4,14 +4,14 @@
 \alias{add_sheet}
 \title{Add new sheet to an existing work book}
 \usage{
-add_sheet(data, wb, sht)
+add_sheet(data, workbook, sheet)
 }
 \arguments{
 \item{data}{table that is going to be written in the workbook}
 
-\item{wb}{existing workbook}
+\item{workbook}{existing workbook}
 
-\item{sht}{name of the new sheet}
+\item{sheet}{name of the new sheet}
 }
 \value{
 Overwrites workbook

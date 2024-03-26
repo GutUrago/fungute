@@ -2,7 +2,7 @@
 % Please edit documentation in R/dictionary.R
 \name{dictionary}
 \alias{dictionary}
-\title{Data dictionary}
+\title{Scrap web data dictionary}
 \usage{
 dictionary(catalog, filename, org = "wb", namecol = TRUE)
 }
@@ -21,7 +21,11 @@ a data frame
 }
 \description{
 Extracts data dictionary from WB LSMS given catalog code and file name.
+
+If there is any missing description of variables, it automatically
+set "Unknown" to the description to write balanced data table
 }
 \examples{
-# test <- dictionary(catalog = 6161, filename = "F4")
+dictionary(catalog = 5984, filename = "F5")
+dictionary(catalog = 1771, filename = "F392", org = "fao")
 }

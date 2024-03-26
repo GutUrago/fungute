@@ -1,6 +1,6 @@
 
 
-#' Data dictionary
+#' Scrap web data dictionary
 #' @description
 #' Extracts data dictionary from WB LSMS given catalog code and file name.
 #'
@@ -10,23 +10,24 @@
 #' @param org name of an organization "wb" or "fao"
 #' @param namecol if empty column for new name is inserted or not.
 #' `default = TRUE`, then manually set new names in excel sheet
+#' @description
+#' If there is any missing description of variables, it automatically
+#' set "Unknown" to the description to write balanced data table
 #'
 #' @return a data frame
 #' @export
 #'
 #' @examples
-#' # test <- dictionary(catalog = 6161, filename = "F4")
-
-
-
+#' dictionary(catalog = 5984, filename = "F5")
+#' dictionary(catalog = 1771, filename = "F392", org = "fao")
 
 
 dictionary <- function(catalog, filename,
                        org = "wb",
                        namecol = TRUE) {
         if(org == "wb") {
-           link = paste0("https://microdata.worldbank.org/index.php/catalog/",
-                         catalog, "/data-dictionary/", filename)
+                link = paste0("https://microdata.worldbank.org/index.php/catalog/",
+                              catalog, "/data-dictionary/", filename)
 
         } else if(org == "fao"){
                 link = paste0("https://microdata.fao.org/index.php/catalog/",
@@ -35,17 +36,25 @@ dictionary <- function(catalog, filename,
         web <- rvest::read_html(x = link)
         web <- rvest::html_elements(x = web,  css = ".data-dictionary")
         web <- rvest::html_text2(x = web)
+        web <- stringr::str_replace(string = web,
+                                    pattern = "^\r\n\r\n\r\n\r\n\r ",
+                                    replacement = "")
         web <- stringr::str_replace_all(string = web,
-                                        pattern = "\r\n", replacement = "")
+                                        pattern = " \r \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r ",
+                                        replacement = "  Unknown  ")
         web <- stringr::str_replace_all(string = web,
-                                        pattern = "\r", replacement = "")
+                                        pattern = "\r\n",
+                                        replacement = "")
+        web <- stringr::str_replace_all(string = web,
+                                        pattern = "\r",
+                                        replacement = "")
         web <- stringr::str_split(string = web, pattern = "  ")[[1]]
         dt <- data.table::as.data.table(x = web)
         dt <- collapse::fmutate(.data = dt,
                                 "r" = 1:collapse::fnobs(web))
         dt <- collapse::fmutate(.data = dt,
                                 "r" = data.table::fifelse(dt$r %% 2 != 1,
-                                                        "even", "odd"))
+                                                          "even", "odd"))
         df <- if(namecol){
                 data.table::data.table(
                         var = dt$web[dt$r=="odd"],
@@ -59,11 +68,5 @@ dictionary <- function(catalog, filename,
         return(df)
 }
 
-
-# dictionary(code = 5827, name = "F2?file_name=Ethiopia_COVID19_Vax_Survey.dta")
-
-dictionary(catalog = 1771,
-           filename = "F392",
-           org = "fao")
 
 
