@@ -1,6 +1,6 @@
 
 
-#' Add sheet to an existing work book
+#' Add new sheet to an existing work book
 #'
 #' @description
 #' Reads existing workbook and adds the new sheet

@@ -4,23 +4,30 @@
 \alias{micro_csv}
 \title{Reads csv survey file}
 \usage{
-micro_csv(data, label = NULL, sht = NULL, fct = TRUE)
+micro_csv(data, label, sht = NULL, fct = TRUE)
 }
 \arguments{
-\item{data}{is a path to the csv data frame to be read}
+\item{data}{is a path to the csv data frame}
 
 \item{label}{an excel file containing names and labels of variables}
 
 \item{sht}{specify sheet name if excel has more than one sheet}
 
-\item{fct}{if you wish to convert strings in to factors}
+\item{fct}{if you wish to convert strings into factors}
 }
 \value{
 a data table
 }
 \description{
-This function helps to organize big survey such as ESS to
-organize cleaning and wrangling process.
+Imports csv micro-data file from local directory. I should be
+supplemented with the excel workbook that follows
+\code{microData::dictionary()} structure.
+}
+\details{
+The column names of the excel file containing the name and description
+of variables should be named "var", "name" and "desc". If the file has
+been created using this package, nothing to worry about as it automatically
+set these names.
 }
 \examples{
 # micro_csv("test.csv")

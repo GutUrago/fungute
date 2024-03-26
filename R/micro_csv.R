@@ -3,14 +3,21 @@
 
 #' Reads csv survey file
 #' @description
-#' This function helps to organize big survey such as ESS to
-#' organize cleaning and wrangling process.
+#' Imports csv micro-data file from local directory. I should be
+#' supplemented with the excel workbook that follows
+#' `microData::dictionary()` structure.
 #'
 #'
-#' @param data is a path to the csv data frame to be read
+#' @param data is a path to the csv data frame
 #' @param label an excel file containing names and labels of variables
 #' @param sht specify sheet name if excel has more than one sheet
-#' @param fct if you wish to convert strings in to factors
+#' @param fct if you wish to convert strings into factors
+#'
+#' @details
+#' The column names of the excel file containing the name and description
+#' of variables should be named "var", "name" and "desc". If the file has
+#' been created using this package, nothing to worry about as it automatically
+#' set these names.
 #'
 #' @return a data table
 #' @export
@@ -23,9 +30,9 @@
 
 
 micro_csv <- function(data,
-                       label = NULL,
-                       sht = NULL,
-                       fct = TRUE){
+                      label,
+                      sht = NULL,
+                      fct = TRUE){
         if(fct){
                 dt <- data.table::fread(input = data,
                                         stringsAsFactors = fct)

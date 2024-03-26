@@ -1,10 +1,14 @@
-Package: wbMicro
-Title: Supplement Functions for Big Survey Wrangling
+Package: microData
+Title: World Bank Microdata Assistant
 Version: 0.0.0.9000
 Authors@R: 
-    person("Gutama Girja", "Urago", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package helps to read survey files and complement them with excel.
+    person("Gutama Girja", "Urago", , "girjagutama@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5588-2301"))
+Description: This package helps to read worldbank microdata files and 
+    organize them with excel. The work flow is starting with `dictionary()`
+    function tho extract variables and their description form the web, followed
+    by `add_sheet()` to the new table an existing excel work book. Finally, using 
+    `micro_csv()` to read local data and apply attributes from the excel workbook.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -16,5 +20,5 @@ Imports:
     readxl,
     rvest,
     stringr
-URL: https://github.com/GutUrago/wbMicro
-BugReports: https://github.com/GutUrago/wbMicro/issues
+URL: https://github.com/GutUrago/microData
+BugReports: https://github.com/GutUrago/microData/issues

@@ -5,8 +5,9 @@
 #' Extracts data dictionary from WB LSMS given catalog code and file name.
 #'
 #'
-#' @param code integer in the wb link after catalog
-#' @param name string in the wb link after data-dictionary
+#' @param catalog integer in the web link after catalog without "/"
+#' @param filename string in the web link after data-dictionary without "/"
+#' @param org name of an organization "wb" or "fao"
 #' @param namecol if empty column for new name is inserted or not.
 #' `default = TRUE`, then manually set new names in excel sheet
 #'
@@ -14,26 +15,23 @@
 #' @export
 #'
 #' @examples
-#'
-#' # library(rvest)
-#' # library(fastverse)
-#' # library(tidyverse)
-#' # library(openxlsx)
-#' # test <- dictionary(code = 6161, name = "F4?file_name=sect3_hh_w5.dta", FALSE)
-
-#' # wb <- loadWorkbook("test.xlsx")
-#' # addWorksheet(wb, "here")
-#' # writeData(wb, "here", tab)
-#' # addWorksheet(wb, "that")
-#' # writeData(wb, "that", ess)
-#' # saveWorkbook(wb, "test.xlsx", overwrite = TRUE)
+#' # test <- dictionary(catalog = 6161, filename = "F4")
 
 
 
 
-dictionary <- function(code, name, namecol = TRUE) {
-        link = paste0("https://microdata.worldbank.org/index.php/catalog/",
-                      code, "/data-dictionary/", name)
+
+dictionary <- function(catalog, filename,
+                       org = "wb",
+                       namecol = TRUE) {
+        if(org == "wb") {
+           link = paste0("https://microdata.worldbank.org/index.php/catalog/",
+                         catalog, "/data-dictionary/", filename)
+
+        } else if(org == "fao"){
+                link = paste0("https://microdata.fao.org/index.php/catalog/",
+                              catalog, "/data-dictionary/", filename)
+        } else {stop("org argument takes only 'wb' or 'fao'")}
         web <- rvest::read_html(x = link)
         web <- rvest::html_elements(x = web,  css = ".data-dictionary")
         web <- rvest::html_text2(x = web)
@@ -64,7 +62,8 @@ dictionary <- function(code, name, namecol = TRUE) {
 
 # dictionary(code = 5827, name = "F2?file_name=Ethiopia_COVID19_Vax_Survey.dta")
 
-
-
+dictionary(catalog = 1771,
+           filename = "F392",
+           org = "fao")
 
 

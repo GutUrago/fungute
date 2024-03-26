@@ -4,12 +4,14 @@
 \alias{dictionary}
 \title{Data dictionary}
 \usage{
-dictionary(code, name, namecol = TRUE)
+dictionary(catalog, filename, org = "wb", namecol = TRUE)
 }
 \arguments{
-\item{code}{integer in the wb link after catalog}
+\item{catalog}{integer in the web link after catalog without "/"}
 
-\item{name}{string in the wb link after data-dictionary}
+\item{filename}{string in the web link after data-dictionary without "/"}
+
+\item{org}{name of an organization "wb" or "fao"}
 
 \item{namecol}{if empty column for new name is inserted or not.
 \code{default = TRUE}, then manually set new names in excel sheet}
@@ -21,16 +23,5 @@ a data frame
 Extracts data dictionary from WB LSMS given catalog code and file name.
 }
 \examples{
-
-# library(rvest)
-# library(fastverse)
-# library(tidyverse)
-# library(openxlsx)
-# test <- dictionary(code = 6161, name = "F4?file_name=sect3_hh_w5.dta", FALSE)
-# wb <- loadWorkbook("test.xlsx")
-# addWorksheet(wb, "here")
-# writeData(wb, "here", tab)
-# addWorksheet(wb, "that")
-# writeData(wb, "that", ess)
-# saveWorkbook(wb, "test.xlsx", overwrite = TRUE)
+# test <- dictionary(catalog = 6161, filename = "F4")
 }

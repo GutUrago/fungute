@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_sheet.R
 \name{add_sheet}
 \alias{add_sheet}
-\title{Add sheet to an existing work book}
+\title{Add new sheet to an existing work book}
 \usage{
 add_sheet(data, wb, sht)
 }
