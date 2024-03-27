@@ -78,6 +78,8 @@ dictionary <- function(catalog,
                                         desc = stringr::str_remove(df$desc, "^\\d+\\.\\s+"))
                 df <- collapse::fmutate(.data = df,
                                         desc = stringr::str_remove(df$desc, "^\\d+\\w\\.\\s+"))
+                df <- collapse::fmutate(.data = df,
+                                        desc = stringr::str_remove(df$desc, "^\\w\\d+\\.\\s+"))
         } else {df <- df}
         return(df)
 }
