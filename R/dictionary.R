@@ -19,6 +19,7 @@
 #'
 #' @return a data table
 #' @author Gutama Girja Urago
+#' @export
 #'
 #' @examples
 #' # dictionary(catalog = 5984, filename = "F5")

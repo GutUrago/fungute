@@ -18,6 +18,7 @@
 #'
 #' @return Overwrites workbook
 #' @author Gutama Girja Urago
+#' @export
 #'
 #' @examples
 #' # add_sheet(wb, "file.xlsx", "sheet")

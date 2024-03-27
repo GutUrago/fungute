@@ -14,6 +14,7 @@
 #'
 #' @return Creates and loads workbook
 #' @author Gutama Girja Urago
+#' @export
 #'
 #' @examples
 #' # wb <- new_workbook("test")

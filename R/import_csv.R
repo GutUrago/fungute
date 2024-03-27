@@ -22,6 +22,7 @@
 #'
 #' @return a data table
 #' @author Gutama Girja Urago
+#' @export
 #'
 #' @examples
 #' # import_csv("test.csv")
