@@ -4,7 +4,7 @@
 \alias{dictionary}
 \title{Extracts web data dictionary}
 \usage{
-dictionary(catalog, filename, org = "wb", namecol = TRUE)
+dictionary(catalog, filename, org = "wb", namecol = TRUE, format = TRUE)
 }
 \arguments{
 \item{catalog}{integer in the web link after catalog without "/"}
@@ -15,6 +15,8 @@ dictionary(catalog, filename, org = "wb", namecol = TRUE)
 
 \item{namecol}{if empty column for new name is mutated or not.
 \code{default = TRUE}, then manually set new names in excel sheet}
+
+\item{format}{Cleans preceding integers in variable descriptions}
 }
 \value{
 a data table
@@ -28,6 +30,7 @@ If there is any missing description of variables, it automatically
 set "Unknown" to the description to write balanced data table
 }
 \examples{
+# dictionary(3823, "F2")
 # dictionary(catalog = 5984, filename = "F5")
 # dictionary(catalog = 1771, filename = "F392", org = "fao")
 }

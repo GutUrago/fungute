@@ -23,6 +23,7 @@
 #' @export
 #'
 #' @examples
+#' # dictionary(3823, "F2")
 #' # dictionary(catalog = 5984, filename = "F5")
 #' # dictionary(catalog = 1771, filename = "F392", org = "fao")
 
@@ -74,10 +75,10 @@ dictionary <- function(catalog,
         }
         if(format){
                 df <- collapse::fmutate(.data = df,
-                                        desc = stringr::str_remove(desc, "^\\d+\\.\\s+"))
+                                        desc = stringr::str_remove(df$desc, "^\\d+\\.\\s+"))
+                df <- collapse::fmutate(.data = df,
+                                        desc = stringr::str_remove(df$desc, "^\\d+\\w\\.\\s+"))
         } else {df <- df}
         return(df)
 }
-
-
 
