@@ -12,6 +12,7 @@
 #' @param org name of an organization "wb" or "fao", `default = "wb"`
 #' @param namecol if empty column for new name is mutated or not.
 #' `default = TRUE`, then manually set new names in excel sheet
+#' @param format Cleans preceding integers in variable descriptions
 #'
 #' @details
 #' If there is any missing description of variables, it automatically
@@ -29,7 +30,8 @@
 dictionary <- function(catalog,
                        filename,
                        org = "wb",
-                       namecol = TRUE) {
+                       namecol = TRUE,
+                       format = TRUE) {
         if(org == "wb") {
                 link = paste0("https://microdata.worldbank.org/index.php/catalog/",
                               catalog, "/data-dictionary/", filename)
@@ -60,16 +62,20 @@ dictionary <- function(catalog,
         dt <- collapse::fmutate(.data = dt,
                                 "r" = data.table::fifelse(dt$r %% 2 != 1,
                                                           "even", "odd"))
-        df <- if(namecol){
-                data.table::data.table(
+        if(namecol){
+               df <- data.table::data.table(
                         var = dt$web[dt$r=="odd"],
                         name = "",
                         desc = dt$web[dt$r=="even"])
         } else {
-                data.table::data.table(
+                df <- data.table::data.table(
                         var = dt$web[dt$r=="odd"],
                         desc = dt$web[dt$r=="even"])
         }
+        if(format){
+                df <- collapse::fmutate(.data = df,
+                                        desc = stringr::str_remove(desc, "^\\d+\\.\\s+"))
+        } else {df <- df}
         return(df)
 }
 
