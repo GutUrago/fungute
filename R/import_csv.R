@@ -10,9 +10,9 @@
 #'
 #'
 #' @param data is a path to the csv data frame
-#' @param label an excel file containing names and labels of variables
-#' @param sht specify sheet name if excel has more than one sheet
-#' @param fct if you wish to convert strings into factors
+#' @param excel an excel file containing names and labels of variables
+#' @param sheet specify sheet name if excel has more than one sheet
+#' @param format Cleans preceding integers in strings and converts to lower
 #'
 #' @details
 #' The column names of the excel file containing the name and description
@@ -32,27 +32,35 @@
 
 
 import_csv <- function(data,
-                      label = NULL,
-                      sht = NULL,
-                      fct = TRUE){
-        if(fct){
-                dt <- data.table::fread(input = data,
-                                        stringsAsFactors = fct)
-        } else {
-                dt <- data.table::fread(input = data)
-        }
-        if(!is.null(label) && !is.null(sht)){
-                label <- readxl::read_excel(path = label, sheet = sht)
-        } else if(!is.null(label)){
-                label <- readxl::read_excel(path = label)
+                      excel = NULL,
+                      sheet = NULL,
+                      format = TRUE){
+        dt <- data.table::fread(input = data)
+        if(format){
+                dt <- dplyr::mutate_if(.tbl = dt, is.character,
+                                       ~stringr::str_remove(., "^\\d+\\.\\s+"))
+                dt <- dplyr::mutate_if(.tbl = dt, is.character, tolower)
+        } else {dt <- dt}
+        if(!is.null(excel) && !is.null(sheet)){
+                excel <- readxl::read_excel(path = excel, sheet = sheet)
+        } else if(!is.null(excel)){
+                excel <- readxl::read_excel(path = excel)
         } else {
                 return(dt)
         }
-        label <- collapse::na_omit(label)
-        dt <- collapse::fselect(.x = dt, label$var)
-        dt <- data.table::setnames(x = dt, old = label$var,
-                                   new = label$name)
-        dt <- collapse::setLabels(X = dt, value = label$desc)
+        excel <- collapse::na_omit(excel)
+        dt <- collapse::fselect(.x = dt, excel$var)
+        dt <- dplyr::mutate_if(.tbl = dt, is.character, as.factor)
+        dt <- data.table::setnames(x = dt, old = excel$var,
+                                   new = excel$name)
+        dt <- collapse::setLabels(X = dt, value = excel$desc)
         return(dt)
         }
+
+
+
+
+
+
+
 

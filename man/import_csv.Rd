@@ -4,16 +4,16 @@
 \alias{import_csv}
 \title{Reads csv survey file}
 \usage{
-import_csv(data, label = NULL, sht = NULL, fct = TRUE)
+import_csv(data, excel = NULL, sheet = NULL, format = TRUE)
 }
 \arguments{
 \item{data}{is a path to the csv data frame}
 
-\item{label}{an excel file containing names and labels of variables}
+\item{excel}{an excel file containing names and labels of variables}
 
-\item{sht}{specify sheet name if excel has more than one sheet}
+\item{sheet}{specify sheet name if excel has more than one sheet}
 
-\item{fct}{if you wish to convert strings into factors}
+\item{format}{Cleans preceding integers in strings and converts to lower}
 }
 \value{
 a data table
